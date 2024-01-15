@@ -1,0 +1,18 @@
+<h1>Nuevo ticket</h1>
+
+<%= simple_form_for(@ticket) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :burger_quantity, label: "¿Cuántas hamburguesas son?", autofocus: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Crear ticket ->", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<br>
+<div>
+  <%= link_to "Ver totales", tickets_path %>
+</div>
