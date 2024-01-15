@@ -12,7 +12,10 @@ class TicketsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render template: 'tickets/ticket_pdf', pdf: 'ticket_pdf' }
+      format.pdf { render pdf: 'ticket_pdf',
+                   template: 'tickets/ticket_pdf',
+                   page_size: 'A7',
+                   margin: { bottom: 0 } }
     end
   end
 
