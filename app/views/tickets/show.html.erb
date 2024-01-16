@@ -2,7 +2,17 @@
 <h3><%= @ticket.burger_quantity %> hamburguesas</h3>
 <%= link_to "Imprimir", "#{ticket_path(@ticket)}.pdf", autofocus: true, target: 'blank'%>
 <div>
-  <%= link_to "Crear nuevo ticket", new_ticket_path, class: "btn btn-primary mt-2" %> <br>
+   <%= link_to "Crear nuevo ticket", new_ticket_path, id: "newTicketLink", class: "btn btn-primary mt-2" %> <br>
   <%= link_to "Ver totales", tickets_path, class: "btn btn-secondary" %> <br>
   <%= button_to "Eliminar este ticket", @ticket, method: :delete, class: "btn btn-danger text-white" %>
 </div>
+
+<script>
+  document.addEventListener('keydown', function(event) {
+    // Verifica si la tecla 'N' o 'n' está presionada
+    if (event.key === 'N' || event.key === 'n') {
+      // Redirige a new_ticket_path
+      window.location.href = '<%= new_ticket_path %>';
+    }
+  });
+</script>
