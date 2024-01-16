@@ -1,38 +1,53 @@
-<div class="container">
-  <h1 class="fw-bold">Cómo vamos hasta ahora</h1>
-  <div class="row align-items-md-stretch mb-3">
-    <div class="col-sm-12 col-md-4">
-      <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
-        <h1 class="fw-bold text-primary"><%= (@total_individual + @total_promo) %></h1>
-        <p class="text-muted">Hamburguesas vendidas.</p>
-      </div>
+<%= link_to "Crear nuevo ticket ->", new_ticket_path, class: "btn btn-primary mb-4", autofocus: true %>
+
+<h1 class="fw-bold">Cómo vamos hasta ahora</h1>
+<div class="row align-items-md-stretch mb-3">
+  <div class="col-sm-12 col-md-4">
+    <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
+      <h1 class="fw-bold text-primary"><%= (@total_individual + (2 * @total_promo)) %></h1>
+      <p>Hamburguesas vendidas.</p>
     </div>
-    <div class="col-sm-12 col-md-4 mb-3">
-      <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
-        <h1 class="fw-bold text-primary"><%= @total_individual_tokens + @total_promo %></h1>
-        <p class="text-muted">Tokens ganados.</p>
-      </div>
+  </div>
+  <div class="col-sm-12 col-md-4 mb-3">
+    <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
+      <h1 class="fw-bold text-primary"><%= @total_individual_tokens + @total_promo_tokens %></h1>
+      <p>Tokens ganados.</p>
     </div>
-    <div class="col-sm-12 col-md-4 mb-3">
-      <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
-        <h1 class="fw-bold text-primary"><%= number_to_currency((@total_individual_tokens + @total_promo) * 4000, precision: 0, delimiter: '.') %></h1>
-        <p class="text-muted">Total vendido.</p>
-      </div>
+  </div>
+  <div class="col-sm-12 col-md-4 mb-3">
+    <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
+      <h1 class="fw-bold text-primary"><%= number_to_currency((@total_individual_tokens + @total_promo_tokens) * 4000, precision: 0, delimiter: '.') %></h1>
+      <p>Total vendido.</p>
     </div>
   </div>
 </div>
 
-<%= link_to "Crear nuevo ticket", new_ticket_path, class: "btn btn-primary mb-3" %>
-
-
-<h1>Todos los tickets</h1>
-<div>
-  <ul class="list-group">
+<h1><strong>Todos los tickets</strong></h1>
+<table class="table table-striped border">
+  <thead>
+    <tr>
+      <th scope="col">Ticket</th>
+      <th scope="col">Hamburguesas</th>
+      <th scope="col">Promo</th>
+      <th scope="col">Tokens</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
     <% @tickets.each do |ticket| %>
-      <li class="list-group-item">
-        <h4 class="mt-2"><%= link_to "Ticket ##{ticket.id}", ticket_path(ticket) %></h4>
-        <p><%= "#{ticket.burger_quantity} 🍔 - #{ticket.promo ? ticket.burger_quantity : ticket.burger_quantity * 1.5} tokens" %></p>
-      </li>
+    <tr>
+      <td><%= link_to "Ticket ##{ticket.id}", ticket_path(ticket) %></td>
+      <td><%= ticket.burger_quantity %></td>
+      <td><%= ticket.promo ? "Sí (#{ticket.burger_quantity / 2})" : "No" %></td>
+      <td><%= ticket.promo ? (ticket.burger_quantity + ((ticket.burger_quantity/2)*0.5)) : ticket.burger_quantity * 1.5 %></td>
+    </tr>
     <% end %>
-  </ul>
-</div>
+  </tbody>
+</table>
+
+<script>
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'N' || event.key === 'n') {
+      window.location.href = '<%= new_ticket_path %>';
+    }
+  });
+</script>

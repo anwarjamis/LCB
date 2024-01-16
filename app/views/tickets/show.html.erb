@@ -1,16 +1,20 @@
 <h1>Ticket #<%= @ticket.id %></h1>
 <h3><%= @ticket.burger_quantity %> hamburguesas</h3>
-<%= link_to "Imprimir", "#{ticket_path(@ticket)}.pdf", autofocus: true, target: 'blank'%>
-<div>
-   <%= link_to "Crear nuevo ticket", new_ticket_path, id: "newTicketLink", class: "btn btn-primary mt-2" %> <br>
-  <%= link_to "Ver totales", tickets_path, class: "btn btn-secondary" %> <br>
-  <%= button_to "Eliminar este ticket", @ticket, method: :delete, class: "btn btn-danger text-white" %>
-</div>
+<%= link_to "Imprimir ->", "#{ticket_path(@ticket)}.pdf", autofocus: true, target: 'blank', class: "btn btn-primary"%> <br><hr>
+<code>Presiona N para crear un nuevo ticket.</code> <br>
+<p class="mt-2"><code>Presiona T para crear un nuevo ticket.</code></p>
+<%= button_to "Eliminar este ticket", @ticket, method: :delete, class: "btn btn-danger text-white" %>
 
 <script>
   document.addEventListener('keydown', function(event) {
     if (event.key === 'N' || event.key === 'n') {
       window.location.href = '<%= new_ticket_path %>';
+    }
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'T' || event.key === 't') {
+      window.location.href = '<%= tickets_path %>';
     }
   });
 </script>

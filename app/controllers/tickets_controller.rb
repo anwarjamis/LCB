@@ -4,8 +4,9 @@ class TicketsController < ApplicationController
   def index
     @tickets = Ticket.all.order(created_at: :desc)
     @total_individual = Ticket.where(promo: false).sum(:burger_quantity)
-    @total_individual_tokens = Ticket.where(promo: false).sum(:burger_quantity) * 1.5
-    @total_promo = Ticket.where(promo: true).sum(:burger_quantity)
+    @total_individual_tokens = @total_individual * 1.5
+    @total_promo = Ticket.where(promo: true).sum(:burger_quantity)/2
+    @total_promo_tokens =  @total_promo * 2.5
   end
 
   def show

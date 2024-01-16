@@ -20,7 +20,7 @@
     <% else %>
       <h1>Ticket #<%= @ticket.id %></h1>
       <h3><%= @ticket.burger_quantity %> hamburguesas (promo)</h3>
-      <h3><%= @ticket.burger_quantity %> tokens</h3>
+      <h3><%= @ticket.burger_quantity/2 * 2.5 %> tokens</h3>
       <p>Ticket creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
     <% end %>
   </body>
