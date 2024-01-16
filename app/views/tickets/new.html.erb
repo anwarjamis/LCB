@@ -1,18 +1,51 @@
-<h1>Nuevo ticket</h1>
-
-<%= simple_form_for(@ticket) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :burger_quantity, label: "¿Cuántas hamburguesas son?", autofocus: true %>
+<div class="container">
+  <div class="mb-3">
+    <%= link_to "<- Ver totales", tickets_path, class: "btn btn-primary" %>
   </div>
+  <div class="row align-items-md-stretch mb-3">
+    <div class="col-sm-12 col-md-6">
+      <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
+        <h1>Crear nuevo ticket individual</h1>
+        <%= simple_form_for(@ticket) do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Crear ticket ->", class: "btn btn-primary" %>
+          <div class="form-inputs">
+            <%= f.input :burger_quantity, label: "¿Cuántas hamburguesas son?", autofocus: true %>
+            <%= f.input :promo, autofocus: true, as: :hidden, input_html: { value: false } %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Crear ticket ->", class: "btn btn-light" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 mb-3">
+      <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
+        <h1>Crear nuevo ticket promo</h1>
+        <%= simple_form_for(@ticket) do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+          <div class="form-inputs">
+            <%= f.input :burger_quantity, label: "¿Cuántas promos son?", autofocus: true %>
+            <%= f.input :promo, autofocus: true, as: :hidden, input_html: { value: true }  %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Crear promo ->", class: "btn btn-light" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
-<br>
-<div>
-  <%= link_to "Ver totales", tickets_path %>
 </div>
+
+<script>
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'T' || event.key === 't') {
+      window.location.href = '<%= tickets_path %>';
+    }
+  });
+</script>

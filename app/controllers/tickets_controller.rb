@@ -3,7 +3,10 @@ class TicketsController < ApplicationController
 
   def index
     @tickets = Ticket.all.order(created_at: :desc)
-    @total = Ticket.all.sum(:burger_quantity)
+    @total_individual = Ticket.where(promo: false).sum(:burger_quantity)
+    @total_individual_tokens = @total_individual * 1.5
+    @total_promo = Ticket.where(promo: true).sum(:burger_quantity)/2
+    @total_promo_tokens =  @total_promo * 2.5
   end
 
   def show
@@ -23,7 +26,7 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
-
+    @ticket.promo == true ? @ticket.burger_quantity = @ticket.burger_quantity * 2 : @ticket.burger_quantity
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully created." }
@@ -48,6 +51,6 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:burger_quantity)
+    params.require(:ticket).permit(:burger_quantity, :promo)
   end
 end
