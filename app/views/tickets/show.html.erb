@@ -9,9 +9,7 @@
 
 <script>
   document.addEventListener('keydown', function(event) {
-    // Verifica si la tecla 'N' o 'n' está presionada
     if (event.key === 'N' || event.key === 'n') {
-      // Redirige a new_ticket_path
       window.location.href = '<%= new_ticket_path %>';
     }
   });

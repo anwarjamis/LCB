@@ -12,9 +12,16 @@
   </head>
   <body>
     <%= image_tag "https://kitt.lewagon.com/placeholder/users/anwarjamis", style: "height: 125px;" %>
-    <h1>Ticket #<%= @ticket.id %></h1>
-    <h3><%= @ticket.burger_quantity %> hamburguesas</h3>
-    <h3><%= @ticket.burger_quantity * 1.5 %> tokens</h3>
-    <p>Este ticket fue creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
+    <% if !@ticket.promo%>
+      <h1>Ticket #<%= @ticket.id %></h1>
+      <h3><%= @ticket.burger_quantity %> hamburguesas</h3>
+      <h3><%= @ticket.burger_quantity * 1.5 %> tokens</h3>
+      <p>Ticket creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
+    <% else %>
+      <h1>Ticket #<%= @ticket.id %></h1>
+      <h3><%= @ticket.burger_quantity %> hamburguesas (promo)</h3>
+      <h3><%= @ticket.burger_quantity %> tokens</h3>
+      <p>Ticket creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
+    <% end %>
   </body>
 </html>
