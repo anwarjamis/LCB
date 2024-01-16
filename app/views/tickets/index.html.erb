@@ -1,15 +1,21 @@
 <div class="container">
   <h1 class="fw-bold">Cómo vamos hasta ahora</h1>
   <div class="row align-items-md-stretch mb-3">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-12 col-md-4">
       <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
         <h1 class="fw-bold text-primary"><%= @total %></h1>
         <p class="text-muted">Hamburguesas vendidas.</p>
       </div>
     </div>
-    <div class="col-sm-12 col-md-6 mb-3">
+    <div class="col-sm-12 col-md-4 mb-3">
       <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
         <h1 class="fw-bold text-primary"><%= @total * 1.5 %></h1>
+        <p class="text-muted">Tokens ganados.</p>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 mb-3">
+      <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
+        <h1 class="fw-bold text-primary"><%= number_to_currency(@total * 1.5 * 4000, precision: 0, delimiter: '.') %></h1>
         <p class="text-muted">Tokens ganados.</p>
       </div>
     </div>
@@ -18,12 +24,14 @@
 
 <%= link_to "Crear nuevo ticket", new_ticket_path, class: "btn btn-primary mb-3" %>
 
+
 <h1>Todos los tickets</h1>
-<div id="tickets">
-  <ul>
+<div>
+  <ul class="list-group">
     <% @tickets.each do |ticket| %>
-      <li>
-        <%= "Ticket ##{ticket.id} - #{ticket.burger_quantity} hamburguesas" %>
+      <li class="list-group-item">
+        <h4 class="mt-2"><%= link_to "Ticket ##{ticket.id}", ticket_path(ticket) %></h4>
+        <p><%= "#{ticket.burger_quantity} 🍔 - #{ticket.burger_quantity * 1.5} tokens" %></p>
       </li>
     <% end %>
   </ul>
