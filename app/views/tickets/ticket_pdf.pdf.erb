@@ -10,14 +10,15 @@
       }
     </style>
   </head>
-  <body>
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/anwarjamis", style: "height: 125px;" %>
+  <body style="text-align: center;">
     <% if !@ticket.promo%>
+      <%= image_tag "https://raw.githubusercontent.com/anwarjamis/LCB/master/app/assets/images/horizontal.jpg", class: "avatar", alt: "dropdown menu", style: "height: 125px;" %>
       <h1>Ticket #<%= @ticket.id %></h1>
       <h3><%= @ticket.burger_quantity %> hamburguesas</h3>
       <h3><%= @ticket.burger_quantity * 1.5 %> tokens</h3>
       <p>Ticket creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
     <% else %>
+      <%= image_tag "https://raw.githubusercontent.com/anwarjamis/LCB/master/app/assets/images/logo.jpg", class: "avatar", alt: "dropdown menu", style: "height: 125px;" %>
       <h1>Ticket #<%= @ticket.id %></h1>
       <h3><%= @ticket.burger_quantity %> hamburguesas (promo)</h3>
       <h3><%= @ticket.burger_quantity/2 * 2.5 %> tokens</h3>
