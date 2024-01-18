@@ -2,7 +2,7 @@
 <h3><%= @ticket.burger_quantity %> hamburguesas</h3>
 <%= link_to "Imprimir ->", "#{ticket_path(@ticket)}.pdf", autofocus: true, target: 'blank', class: "btn btn-primary"%> <br><hr>
 <code>Presiona N para crear un nuevo ticket.</code> <br>
-<p class="mt-2"><code>Presiona T para crear un nuevo ticket.</code></p>
+<p class="mt-2"><code>Presiona T para ver los totales.</code></p>
 <%= button_to "Eliminar este ticket", @ticket, method: :delete, class: "btn btn-danger text-white" %>
 
 <script>
