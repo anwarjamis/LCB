@@ -11,15 +11,18 @@
     </style>
   </head>
   <body style="text-align: center;">
-    <%= image_tag "https://i.pinimg.com/originals/5e/6d/77/5e6d770562ba965b4abacb068333ae65.jpg", style: "height: 125px;" %>
-    <% if !@ticket.promo%><h1>Ticket #<%= @ticket.id %></h1>
-      <h3><%= @ticket.burger_quantity %> hamburguesas</h3>
-      <h3><%= @ticket.burger_quantity * 1.5 %> tokens</h3>
-      <p>Ticket creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
-    <% else %><h1>Ticket #<%= @ticket.id %></h1>
-      <h3><%= @ticket.burger_quantity %> hamburguesas (promo)</h3>
-      <h3><%= @ticket.burger_quantity/2 * 2.5 %> tokens</h3>
-      <p>Ticket creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
+    <%= image_tag wicked_pdf_asset_base64('ticket.jpg'), style: "height: 125px;" %>
+    <h1>Ticket #<%= @ticket.id %></h1>
+    <% if @ticket.burger_quantity.positive? %>
+      <h3><%= @ticket.burger_quantity %> hamburguesas de carne</h3>
     <% end %>
+    <% if @ticket.veggie_quantity.positive? %>
+      <h3><%= @ticket.veggie_quantity %> hamburguesas veggie</h3>
+    <% end %>
+    <% if @ticket.drink_quantity.positive? %>
+      <h3><%= @ticket.drink_quantity %> bebidas</h3>
+    <% end %>
+    <h3><%= @ticket.tokens %> tokens</h3>
+    <p>Ticket creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
   </body>
 </html>
