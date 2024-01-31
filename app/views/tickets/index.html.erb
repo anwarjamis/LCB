@@ -4,19 +4,31 @@
 <div class="row align-items-md-stretch mb-3">
   <div class="col-sm-12 col-md-4">
     <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
-      <h1 class="fw-bold text-primary"><%= (@total_individual + (2 * @total_promo)) %></h1>
-      <p>Hamburguesas vendidas.</p>
+      <h1 class="fw-bold text-primary"><%= @burgers %></h1>
+      <p>Hamburguesas de carne vendidas.</p>
     </div>
   </div>
   <div class="col-sm-12 col-md-4 mb-3">
     <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
-      <h1 class="fw-bold text-primary"><%= @total_individual_tokens + @total_promo_tokens %></h1>
-      <p>Tokens ganados.</p>
+      <h1 class="fw-bold text-primary"><%= @veggies %></h1>
+      <p>Hamburguesas veggie vendidas.</p>
     </div>
   </div>
   <div class="col-sm-12 col-md-4 mb-3">
     <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
-      <h1 class="fw-bold text-primary"><%= number_to_currency((@total_individual_tokens + @total_promo_tokens) * 4000, precision: 0, delimiter: '.') %></h1>
+      <h1 class="fw-bold text-primary"><%= @drinks %></h1>
+      <p>Bebidas vendidas.</p>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 mb-3">
+    <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
+      <h1 class="fw-bold text-primary"><%= @token_total %></h1>
+      <p>Tokens vendidos.</p>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 mb-3">
+    <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
+      <h1 class="fw-bold text-primary"><%= number_with_delimiter(@token_total * 4000, delimiter: '.', separator: ',') %></h1>
       <p>Total vendido.</p>
     </div>
   </div>
@@ -27,8 +39,9 @@
   <thead>
     <tr>
       <th scope="col">Ticket</th>
-      <th scope="col">Hamburguesas</th>
-      <th scope="col">Promo</th>
+      <th scope="col">Hamburguesas de carnes</th>
+      <th scope="col">Hamburguesas de veggie</th>
+      <th scope="col">Bebidas</th>
       <th scope="col">Tokens</th>
     </tr>
   </thead>
@@ -37,8 +50,9 @@
     <tr>
       <td><%= link_to "Ticket ##{ticket.id}", ticket_path(ticket) %></td>
       <td><%= ticket.burger_quantity %></td>
-      <td><%= ticket.promo ? "Sí (#{ticket.burger_quantity / 2})" : "No" %></td>
-      <td><%= ticket.promo ? (ticket.burger_quantity + ((ticket.burger_quantity/2)*0.5)) : ticket.burger_quantity * 1.5 %></td>
+      <td><%= ticket.veggie_quantity %></td>
+      <td><%= ticket.drink_quantity %></td>
+      <td><%= ticket.tokens %></td>
     </tr>
     <% end %>
   </tbody>

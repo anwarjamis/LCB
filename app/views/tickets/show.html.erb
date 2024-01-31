@@ -1,5 +1,14 @@
 <h1>Ticket #<%= @ticket.id %></h1>
-<h3><%= @ticket.burger_quantity %> hamburguesas</h3>
+<% if @ticket.burger_quantity.positive? %>
+  <h3><%= @ticket.burger_quantity %> hamburguesas de carne</h3>
+<% end %>
+<% if @ticket.veggie_quantity.positive? %>
+  <h3><%= @ticket.veggie_quantity %> hamburguesas veggie</h3>
+<% end %>
+<% if @ticket.drink_quantity.positive? %>
+  <h3><%= @ticket.drink_quantity %> bebidas</h3>
+<% end %>
+<h3><%= @ticket.tokens  %> tokens</h3>
 <%= link_to "Imprimir ->", "#{ticket_path(@ticket)}.pdf", autofocus: true, target: 'blank', class: "btn btn-primary"%> <br><hr>
 <code>Presiona N para crear un nuevo ticket.</code> <br>
 <p class="mt-2"><code>Presiona T para ver los totales.</code></p>
