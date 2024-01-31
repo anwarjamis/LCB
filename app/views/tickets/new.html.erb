@@ -5,7 +5,7 @@
   <div class="row justify-content-center mb-3">
     <div class="col-sm-12 col-md-6">
       <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
-        <h1><strong>Crear nuevo ticket individual</strong></h1>
+        <h1><strong>Crear nuevo ticket</strong></h1>
         <%= simple_form_for(@ticket) do |f| %>
           <%= f.error_notification %>
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>

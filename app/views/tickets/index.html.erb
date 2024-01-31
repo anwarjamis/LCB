@@ -28,7 +28,7 @@
   </div>
   <div class="col-sm-12 col-md-6 mb-3">
     <div style="border-radius: 8px;" class="p-4 bg-light border shadow-sm">
-      <h1 class="fw-bold text-primary"><%= number_with_delimiter(@token_total * 4000, delimiter: '.', separator: ',') %></h1>
+      <h1 class="fw-bold text-primary"><%= number_to_currency(@token_total * 4000, delimiter: '.', precision: 0 ) %></h1>
       <p>Total vendido.</p>
     </div>
   </div>
@@ -38,9 +38,9 @@
 <table class="table table-striped border">
   <thead>
     <tr>
-      <th scope="col">Ticket</th>
+      <th scope="col">Tickets</th>
       <th scope="col">Hamburguesas de carnes</th>
-      <th scope="col">Hamburguesas de veggie</th>
+      <th scope="col">Hamburguesas veggie</th>
       <th scope="col">Bebidas</th>
       <th scope="col">Tokens</th>
     </tr>
