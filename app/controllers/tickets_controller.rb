@@ -3,13 +3,10 @@ class TicketsController < ApplicationController
 
   def index
     @tickets = Ticket.all.order(created_at: :desc)
-    @token_burger = Ticket.sum(:burger_quantity) * 2
     @burgers = Ticket.sum(:burger_quantity)
-    @token_veggie = Ticket.sum(:veggie_quantity) * 2
     @veggies = Ticket.sum(:veggie_quantity)
-    @token_drink = Ticket.sum(:drink_quantity) * 0.5
     @drinks = Ticket.sum(:drink_quantity)
-    @token_total = @token_burger + @token_veggie + @token_drink
+    @token_total = Ticket.sum(:tokens)
   end
 
   def show
@@ -24,13 +21,14 @@ class TicketsController < ApplicationController
   end
 
   def new
+    @veggies = Ticket.sum(:veggie_quantity)
     @ticket = Ticket.new
   end
 
   def create
     @ticket = Ticket.new(ticket_params)
     set_default_values(@ticket)
-    @ticket.tokens = @ticket.burger_quantity * 2 + @ticket.veggie_quantity * 2 + @ticket.drink_quantity * 0.5
+    @ticket.tokens = (@ticket.burger_quantity + @ticket.veggie_quantity) * 1.5 + @ticket.drink_quantity * 0.5
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully created." }
