@@ -12,7 +12,7 @@
   </head>
   <body style="text-align: center;">
     <%= image_tag wicked_pdf_asset_base64('ticket.jpg'), style: "height: 125px;" %>
-    <h1>Ticket #<%= @ticket.id %></h1>
+    <h1>Ticket Caja 1 #<%= @ticket.id %></h1>
     <% if @ticket.burger_quantity.positive? %>
       <h3><%= @ticket.burger_quantity %> hamburguesas de carne</h3>
     <% end %>

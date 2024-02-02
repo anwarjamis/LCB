@@ -2,7 +2,7 @@
   <div class="mb-3">
     <%= link_to "<- Ver totales", tickets_path, class: "btn btn-primary" %>
   </div>
-  <div class="row justify-content-center mb-3">
+  <div class="row justify-content-center mb-5">
     <div class="col-sm-12 col-md-6">
       <div style="border-radius: 12px;" class="p-4 bg-light border shadow-sm">
         <h1><strong>Crear nuevo ticket</strong></h1>
@@ -12,7 +12,9 @@
 
           <div class="form-inputs">
             <%= f.input :burger_quantity, label: "¿Cuántas hamburguesas de carne son?", autofocus: true %>
-            <%= f.input :veggie_quantity, label: "¿Cuántas hamburguesas veggie son?" %>
+            <% if @veggies <= 125 %>
+            <%= f.input :veggie_quantity, label: "¿Cuántas hamburguesas veggie son? Quedan #{126 - @veggies} disponibles" %>
+            <% end %>
             <%= f.input :drink_quantity, label: "¿Cuántas bebidas son?" %>
             <%= f.input :promo, as: :hidden, input_html: { value: false } %>
           </div>
