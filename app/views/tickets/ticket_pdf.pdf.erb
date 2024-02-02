@@ -4,25 +4,26 @@
     <meta charset="utf-8">
     <title>Ticket #<%= @ticket_id %></title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: sans-serif;
       }
     </style>
   </head>
   <body style="text-align: center;">
     <%= image_tag wicked_pdf_asset_base64('ticket.jpg'), style: "height: 125px;" %>
-    <h1>Ticket Caja 1 #<%= @ticket.id %></h1>
+    <h2><strong>Ticket Caja 1 #<%= @ticket.id %></strong></h2>
     <% if @ticket.burger_quantity.positive? %>
-      <h3><%= @ticket.burger_quantity %> hamburguesas de carne</h3>
+      <p><%= @ticket.burger_quantity %> hamburguesas de carne</p>
     <% end %>
     <% if @ticket.veggie_quantity.positive? %>
-      <h3><%= @ticket.veggie_quantity %> hamburguesas veggie</h3>
+      <p><%= @ticket.veggie_quantity %> hamburguesas veggie</p>
     <% end %>
     <% if @ticket.drink_quantity.positive? %>
-      <h3><%= @ticket.drink_quantity %> bebidas</h3>
+      <p><%= @ticket.drink_quantity %> bebidas</p>
     <% end %>
-    <h3><%= @ticket.tokens %> tokens</h3>
+    <hr>
+    <p><strong><%= @ticket.tokens %> tokens</strong></p>
+    <hr>
     <p>Ticket creado a las <%= @ticket.created_at.in_time_zone("America/Santiago").strftime("%H:%M") %></p>
   </body>
 </html>

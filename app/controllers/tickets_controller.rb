@@ -24,11 +24,11 @@ class TicketsController < ApplicationController
     @veggies = Ticket.sum(:veggie_quantity)
     @ticket = Ticket.new
   end
-  
+
   def create
     @ticket = Ticket.new(ticket_params)
     set_default_values(@ticket)
-    @ticket.tokens = @ticket.burger_quantity * 1.5 + @ticket.veggie_quantity * 1.5 + @ticket.drink_quantity * 0.5
+    @ticket.tokens = (@ticket.burger_quantity + @ticket.veggie_quantity) * 1.5 + @ticket.drink_quantity * 0.5
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully created." }
