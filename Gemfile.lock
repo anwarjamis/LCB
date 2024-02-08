@@ -1,4 +1,27 @@
 GIT
+  remote: https://github.com/activeadmin/activeadmin.git
+  revision: 761674e524d3b40cf6757d4cb8fcac0e09eb998f
+  specs:
+    activeadmin (4.0.0.beta4)
+      arbre (~> 2.0)
+      formtastic (>= 3.1)
+      formtastic_i18n (>= 0.4)
+      inherited_resources (~> 1.7)
+      kaminari (>= 1.2.1)
+      railties (>= 6.1)
+      ransack (>= 4.0)
+
+GIT
+  remote: https://github.com/activeadmin/inherited_resources.git
+  revision: eca6576126e0b9a5a4273946d46da7f7e5e3030b
+  specs:
+    inherited_resources (1.14.0)
+      actionpack (>= 6.0)
+      has_scope (>= 0.6)
+      railties (>= 6.0)
+      responders (>= 2)
+
+GIT
   remote: https://github.com/heartcombo/simple_form.git
   revision: 8f77f598b32ed11b0d56c44481607a6e911bcecb
   specs:
@@ -76,6 +99,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    arbre (2.0.0)
+      activesupport (>= 3.0.0)
+      ruby2_keywords (>= 0.0.2)
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
     bcrypt (3.1.20)
@@ -116,8 +142,14 @@ GEM
     ffi (1.16.3)
     font-awesome-sass (6.5.1)
       sassc (~> 2.0)
+    formtastic (5.0.0)
+      actionpack (>= 6.0.0)
+    formtastic_i18n (0.7.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    has_scope (0.8.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -131,6 +163,18 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -200,6 +244,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.1.0)
+    ransack (4.1.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rdoc (6.6.2)
       psych (>= 4.0.0)
     redis (4.8.1)
@@ -210,6 +258,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -265,6 +314,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activeadmin!
   autoprefixer-rails
   bootsnap
   bootstrap (~> 5.2)
@@ -274,6 +324,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass (~> 6.1)
   importmap-rails
+  inherited_resources!
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
